@@ -1,8 +1,14 @@
 {
-    "name": "laravel/laravel",
-    "description": "The Laravel Framework.",
-    "keywords": ["framework", "laravel"],
+    "name": "kk0501/laravel5-admin-api",
+    "description": "an api with admin",
+    "keywords": ["laravel", "jwt", "dingo", "cors", "admin"],
     "license": "MIT",
+    "homepage": "https://github.com/kk0501/laravel5-admin-api",
+    "authors": [{
+        "name": "kk",
+        "email": "461025755@qq.com",
+        "role": "Developer"
+    }],
     "type": "project",
     "require": {
         "php": ">=7.0.0",
@@ -41,8 +47,7 @@
     },
     "extra": {
         "laravel": {
-            "dont-discover": [
-            ]
+            "dont-discover": []
         }
     },
     "scripts": {
@@ -50,7 +55,16 @@
             "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
         ],
         "post-create-project-cmd": [
-            "@php artisan key:generate"
+            "@php artisan key:generate",
+            "@php artisan jwt:secret --force"
+        ],
+        "post-install-cmd": [
+            "Illuminate\\Foundation\\ComposerScripts::postInstall",
+            "php artisan optimize"
+        ],
+        "post-update-cmd": [
+            "Illuminate\\Foundation\\ComposerScripts::postUpdate",
+            "php artisan optimize"
         ],
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
