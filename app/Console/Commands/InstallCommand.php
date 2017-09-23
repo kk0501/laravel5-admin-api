@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use Encore\Admin\Auth\Database\Administrator;
+use Encore\Admin\Auth\Database\Menu;
 use Illuminate\Console\Command;
 
 class InstallCommand extends Command
@@ -48,5 +49,22 @@ class InstallCommand extends Command
         if (Administrator::count() == 0) {
             $this->call('db:seed', ['--class' => \Encore\Admin\Auth\Database\AdminTablesSeeder::class]);
         }
+        // admin extension
+        if (Menu::where('title', '=', 'Helpers')->count() == 0) {
+            $this->call('admin:import', ['helpers']);
+        }
+
+        if (Menu::where('title', '=', 'Api tester')->count() == 0) {
+            $this->call('admin:import', ['api-tester']);
+        }
+
+        if (Menu::where('title', '=', 'Log viwer')->count() == 0) {
+            $this->call('admin:import', ['log-viewer']);
+        }
+
+        if (Menu::where('title', '=', 'Media manager')->count() == 0) {
+            $this->call('admin:import', ['media-manager']);
+        }
+
     }
 }
