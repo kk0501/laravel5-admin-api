@@ -51,19 +51,19 @@ class InstallCommand extends Command
         }
         // admin extension
         if (Menu::where('title', '=', 'Helpers')->count() == 0) {
-            $this->call('admin:import', ['helpers']);
+            $this->call('admin:import', ['extension'=>'helpers']);
         }
 
         if (Menu::where('title', '=', 'Api tester')->count() == 0) {
-            $this->call('admin:import', ['api-tester']);
+            $this->call('admin:import', ['extension'=>'api-tester']);
         }
 
         if (Menu::where('title', '=', 'Log viwer')->count() == 0) {
-            $this->call('admin:import', ['log-viewer']);
+            $this->call('admin:import', ['extension'=>'log-viewer']);
         }
 
         if (Menu::where('title', '=', 'Media manager')->count() == 0) {
-            $this->call('admin:import', ['media-manager']);
+            $this->call('admin:import', ['extension'=>'media-manager']);
         }
 
     }
